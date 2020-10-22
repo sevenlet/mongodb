@@ -1,37 +1,85 @@
-## Welcome to GitHub Pages
+# Mac 安装MongoDB 
 
-You can use the [editor on GitHub](https://github.com/sevenlet/mongodb/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+## 1、[下载压缩包](https://fastdl.mongodb.org/osx/mongodb-osx-ssl-x86_64-4.0.0.tgz)
+   下载地址：https://fastdl.mongodb.org/osx/mongodb-osx-ssl-x86_64-4.0.0.tgz
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## 2、解压
 
-### Markdown
+## 3、修改文件名称 mongodb
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+## 4、把重命名之后的mongodb文件夹复制到/usr/local目录下
+   快捷键：**`shift + command +G`**
 
-```markdown
-Syntax highlighted code block
+## 5、修改环境变量 
 
-# Header 1
-## Header 2
-### Header 3
+**打开配置文件**
 
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+```sh
+$ open -e .bash_profile
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+ **添加内容**
 
-### Jekyll Themes
+```
+export PATH=${PATH}:/zhangjinxiu/Documents/my/mongodb/bin
+```
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/sevenlet/mongodb/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+## 6、添加文件夹
+  ```sh
+$ sudo mkdir -p data/db
+  ```
 
-### Support or Contact
+## 7、启动服务
+切换到`mongodb/bin`目录下 
+ 打一个`terminal`命令行工具  执行命令 
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+```sh
+$ sudo ./mongod
+```
+
+## 8、进入mogodb环境
+打一个`terminal`命令行工具 
+打一个`terminal`命令行工具 执行命令 
+
+```sh
+$ sudo ./mongo
+```
+
+## 9、关闭mongodb服务
+使用命令 `use admin` 切换到`admin`
+
+使用命令 `db.shutdownServer();` 关闭`mogodb`服务  
+
+ 
+
+# MongoDB 可视化管理工具使用
+**1、下载工具 直接使用** 
+https://studio3t.com/download/?utm_source=knowledge-base&utm_medium=button
+
+**2、克隆 https://github.com/mrvautin/adminMongo** 
+安装 
+
+```sh
+$ npm i
+```
+
+
+启动
+
+```sh
+$ npm start 
+```
+
+浏览器输入网址http://127.0.0.1:1234查看
+
+*查看[MongoDB 用户名密码登录](https://www.jianshu.com/p/79caa1cc49a5)介绍*
+
+# 备注
+`MongoDB`官网： https://docs.mongodb.com/manual/installation/
+`mongodb`进程号的查找方式：
+
+```sh
+$ ln -s /data/db/mongod.lock ./mongodb.pid
+$ cat ./mongodb.pid
+```
+> mongodb的data目录下mongod.lock中记录了pid
